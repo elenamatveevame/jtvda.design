@@ -1,6 +1,6 @@
 # jtvda.design
 
-Personal site of Jeroen Thys van den Audenaerde, interior and furniture designer in Antwerp.
+Personal site of Jeroen Thys van den Audenaerde, interior and furniture designer in Mechelen.
 Black, a lot of empty space, and one colour: International Klein Blue (`#002fa7`).
 
 Plain HTML, CSS and JavaScript. No build step and no dependencies apart from two Google Fonts
@@ -28,24 +28,24 @@ Then open http://localhost:8771. Opening `index.html` straight from the disk wor
 | --- | --- |
 | `index.html` | All the content: the sections, texts, pieces and photos |
 | `style.css` | Colours, type, layout, animation |
-| `main.js` | Loader, live Antwerp clock, cursor, scroll scenes, hover on the pieces |
+| `main.js` | Loader, live Mechelen clock, cursor, scroll scenes, hover on the pieces |
 | `*.webp` | Images, next to `index.html` in the root |
 
 ## The page, top to bottom
 
+The whole page is black. The only colour is International Klein Blue.
+
 1. **Entrance.** The name in large type. A small Klein-blue square grows on scroll until it fills the screen, and the black Judd table floats in the blue.
-2. **01 Selected work.** Five pieces scattered on a light field. They stay grey and blurred until you point at one, then the name appears below in large type.
-3. **In the air.** The blue glass dining table comes closer as you scroll.
-4. **02 In situ.** Nine photographs from the stone yard, the workshop and rooms, scattered on black.
-5. **03 About.** Profile, current role at Cockaert, Galerie Philia, practice.
-6. **04 Contact.** Email and Instagram on a full Klein-blue field.
+2. **Selected work.** Three pieces float on black (01–03), then five black-and-white photographs (04–08). A click opens any of them full screen, in colour.
+3. **About.** Portrait, a short profile, current role at Cockaert, Galerie Philia.
+4. **Contact.** Email and Instagram on a full Klein-blue screen.
 
 ## Editing
 
 - **Text:** edit it in `index.html`.
-- **A piece in "Selected work":** each one is a `<button class="piece">`. Its `--x`, `--y` and `--w` set the position and width on a computer. `--xm`, `--ym` and `--wm` do the same on a phone. `data-name` and `data-detail` are the caption.
-- **A photo in "In situ":** each one is a `<figure class="shot">`, positioned the same way.
+- **A piece or a photo:** each one is a `<button class="item">`. Its `--x`, `--y` and `--w` set the position and width on a computer. `--xm`, `--ym` and `--wm` do the same on a phone. `data-name` and `data-detail` are shown in the full-screen viewer.
 - **The blue:** change `--ikb` at the top of `style.css`.
+- After changing `style.css` or `main.js`, raise the `?v=` number on their links in `index.html` so browsers fetch the new file.
 
 ## Image sources (check before going public)
 
