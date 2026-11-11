@@ -117,6 +117,73 @@
     piece.addEventListener('click', activate);
   });
 
+  /* Viewer: a click opens the photo full screen; arrows and Esc work. */
+  const lb = document.querySelector('.lightbox');
+  const lbFig = lb.querySelector('.lightbox__fig');
+  const lbImg = lb.querySelector('.lightbox__img');
+  const lbName = lb.querySelector('[data-lb-name]');
+  const lbDetail = lb.querySelector('[data-lb-detail]');
+  const lbCount = lb.querySelector('[data-lb-count]');
+  const lbClose = lb.querySelector('[data-lb-close]');
+  const shotsAll = Array.from(document.querySelectorAll('.shot'));
+  const groups = { work: pieces, situ: shotsAll };
+  const pad2 = (n) => String(n).padStart(2, '0');
+  let lbItems = [];
+  let lbIndex = 0;
+  let lbReturn = null;
+
+  const lbRender = () => {
+    const el = lbItems[lbIndex];
+    const img = el.querySelector('img');
+    lbImg.src = img.currentSrc || img.src;
+    lbImg.alt = img.alt;
+    lbName.textContent = el.dataset.name || '';
+    lbDetail.textContent = el.dataset.detail || img.alt;
+    lbCount.textContent = pad2(lbIndex + 1) + ' / ' + pad2(lbItems.length);
+  };
+  const lbOpen = (group, index) => {
+    lbItems = groups[group];
+    lbIndex = index;
+    lb.dataset.theme = group === 'work' ? 'light' : 'dark';
+    lbRender();
+    lbReturn = document.activeElement;
+    lb.hidden = false;
+    html.classList.add('lb-open');
+    void lb.offsetWidth; /* start the fade from the closed state */
+    lb.classList.add('is-open');
+    lbClose.focus({ preventScroll: true });
+  };
+  const lbHide = () => {
+    lb.classList.remove('is-open');
+    html.classList.remove('lb-open');
+    lb.hidden = true;
+    if (lbReturn) lbReturn.focus({ preventScroll: true });
+  };
+  const lbStep = (d) => {
+    lbIndex = (lbIndex + d + lbItems.length) % lbItems.length;
+    lbRender();
+  };
+
+  Object.keys(groups).forEach((group) => {
+    groups[group].forEach((el, i) => el.addEventListener('click', () => lbOpen(group, i)));
+  });
+  lbClose.addEventListener('click', lbHide);
+  lb.querySelector('[data-lb-prev]').addEventListener('click', () => lbStep(-1));
+  lb.querySelector('[data-lb-next]').addEventListener('click', () => lbStep(1));
+  lb.addEventListener('click', (e) => { if (e.target === lb || e.target === lbFig) lbHide(); });
+  document.addEventListener('keydown', (e) => {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') lbHide();
+    else if (e.key === 'ArrowRight') lbStep(1);
+    else if (e.key === 'ArrowLeft') lbStep(-1);
+    else if (e.key === 'Tab') {
+      const f = Array.from(lb.querySelectorAll('button'));
+      const i = f.indexOf(document.activeElement);
+      e.preventDefault();
+      f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
+    }
+  });
+
   /* Scroll scenes. */
   const entrance = document.querySelector('.scene--entrance');
   const entranceStick = entrance.querySelector('.scene__stick');
@@ -151,7 +218,7 @@
     entranceStick.style.setProperty('--judd-s', (0.82 + 0.18 * ease(range(p, 0.62, 1))).toFixed(3));
 
     const f = progress(focus);
-    focusStick.style.setProperty('--fs', (0.22 + 0.86 * ease(range(f, 0, 0.78))).toFixed(3));
+    focusStick.style.setProperty('--fs', (0.22 + 0.78 * ease(range(f, 0, 0.78))).toFixed(3));
     focusStick.style.setProperty('--fo', range(f, 0, 0.1).toFixed(3));
     focusStick.style.setProperty('--fc', range(f, 0.62, 0.82).toFixed(3));
 
@@ -159,7 +226,8 @@
       const drift = (box, items) => {
         const r = box.getBoundingClientRect();
         if (r.bottom < -innerHeight || r.top > innerHeight * 2) return;
-        const offset = r.top + r.height / 2 - innerHeight / 2;
+        const k = innerWidth < 760 ? 0.35 : 1; /* gentler drift on a phone so nothing collides */
+        const offset = (r.top + r.height / 2 - innerHeight / 2) * k;
         items.forEach((item) => {
           const speed = parseFloat(item.dataset.speed || '0');
           item.style.setProperty('--py', (offset * speed).toFixed(1) + 'px');
