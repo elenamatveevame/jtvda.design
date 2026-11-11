@@ -277,7 +277,9 @@ em { font-style: italic; }
 .piece.is-active .piece__no, .piece:hover .piece__no { color: var(--ink); }
 .piece.is-active img, .piece:hover img, .piece:focus-visible img { filter: none; opacity: 1; }
 .piece:focus-visible { outline: 1px solid var(--ink); outline-offset: 10px; }
-.piece--photo img { filter: none; } /* already monochrome; its background is the page colour, baked in */
+/* Already monochrome, with the page colour baked into its background: dim it harder instead of greying it. */
+.piece--photo img { filter: blur(1.5px); opacity: 0.3; }
+.piece--photo.is-active img, .piece--photo:hover img, .piece--photo:focus-visible img { filter: none; opacity: 1; }
 
 .work__caption {
   display: grid;
