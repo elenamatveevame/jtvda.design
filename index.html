@@ -5,11 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>jtvda — Jeroen Thys van den Audenaerde, interior &amp; furniture designer</title>
 <meta name="description" content="Jeroen Thys van den Audenaerde — interior and furniture designer in Antwerp. Mostly black, sometimes International Klein Blue.">
-<script>document.documentElement.classList.add('js');</script>
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="jtvda — Jeroen Thys van den Audenaerde">
+<meta property="og:description" content="Interior and furniture designer in Antwerp. Mostly black, sometimes International Klein Blue.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23002fa7'/%3E%3C/svg%3E">
+<script>
+  document.documentElement.classList.add('js');
+  try { if (sessionStorage.getItem('jtvda-seen')) document.documentElement.classList.add('seen'); } catch (e) {}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter+Tight:wght@400;500&amp;display=swap">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body data-theme="dark">
 
@@ -18,7 +26,7 @@
   <span class="loader__count">000</span>
 </div>
 
-<header class="hud hud--top">
+<header class="hud hud--top" data-section="entrance">
   <a class="hud__brand" href="#entrance">jtvda</a>
   <span class="hud__section"><span class="hud__dot" aria-hidden="true"></span><span data-section-label>Entrance</span></span>
   <nav class="hud__nav" aria-label="Main">
@@ -44,6 +52,7 @@
     <div class="scene__stick">
       <div class="entrance__square" aria-hidden="true"></div>
       <p class="entrance__intro">Interior and furniture designer, based in Antwerp.</p>
+      <p class="entrance__hint label" aria-hidden="true">Scroll <span>↓</span></p>
       <h1 class="entrance__name"><span>Jeroen Thys</span> <span>van den Audenaerde</span></h1>
       <div class="entrance__end">
         <div class="float-b entrance__judd"><img src="judd.webp?v=3" alt="Judd table in black powder-coated steel, floating in Klein blue" width="1123" height="761"></div>
@@ -55,7 +64,7 @@
   <section class="work" id="work" data-label="Work" data-theme="light">
     <div class="work__head">
       <h2 class="label">01 — Selected work</h2>
-      <span class="label">Furniture · <span class="only-pointer">point at a piece</span><span class="only-touch">tap a piece</span></span>
+      <span class="label">Furniture · <span class="only-pointer">point to preview, click to open</span><span class="only-touch">tap to open</span></span>
     </div>
     <div class="work__field">
       <button type="button" class="piece is-active" style="--x:10%;--y:5%;--w:10vw;--xm:8%;--ym:3%;--wm:34vw" data-speed="-0.12" data-no="01" data-name="Art Deco chair, IKB edition" data-detail="Ash stained IKB blue, upholstered seat">
@@ -154,9 +163,9 @@
       </div>
       <div class="about__col">
         <p class="label">Now</p>
-        <p>Interior designer at <a href="https://www.cockaert.be/team/">Cockaert Home of Design</a>, Meise.</p>
+        <p>Interior designer at <a href="https://www.cockaert.be/team/" target="_blank" rel="noopener">Cockaert Home of Design</a>, Meise.</p>
         <p class="label">Shown at</p>
-        <p><a href="https://www.galerie-philia.com/designers/thys-van-den-audenaerde/">Galerie Philia</a> — Ellipse low table, marble and brass.</p>
+        <p><a href="https://www.galerie-philia.com/designers/thys-van-den-audenaerde/" target="_blank" rel="noopener">Galerie Philia</a> — Ellipse low table, marble and brass.</p>
       </div>
       <ol class="about__list" aria-label="Practice">
         <li><span>01</span>Interiors</li>
@@ -171,12 +180,16 @@
     <p class="label">04 — Contact</p>
     <div class="contact__main">
       <a class="contact__mail" href="mailto:jeroentvda@hotmail.com">jeroentvda<wbr>@hotmail.com</a>
-      <p>For interiors, furniture and design projects.</p>
+      <div class="contact__row">
+        <p>For interiors, furniture and design projects.</p>
+        <button type="button" class="contact__copy label" data-copy="jeroentvda@hotmail.com"><span data-copy-label aria-live="polite">Copy address</span></button>
+      </div>
     </div>
     <div class="contact__foot label">
-      <a href="https://www.instagram.com/jtvda.design/">Instagram @jtvda.design</a>
-      <a href="https://www.cockaert.be/team/">Cockaert</a>
+      <a href="https://www.instagram.com/jtvda.design/" target="_blank" rel="noopener">Instagram @jtvda.design</a>
+      <a href="https://www.cockaert.be/team/" target="_blank" rel="noopener">Cockaert</a>
       <span>© 2026 jtvda.design</span>
+      <a href="#entrance">Back to top ↑</a>
     </div>
   </section>
 
@@ -196,6 +209,6 @@
   </div>
 </div>
 
-<script src="main.js?v=3"></script>
+<script src="main.js?v=7"></script>
 </body>
 </html>
