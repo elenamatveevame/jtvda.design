@@ -14,13 +14,9 @@ python3 -m http.server 8771
 
 Then open http://localhost:8771. Opening `index.html` straight from the disk works too.
 
-## Publish on GitHub Pages
+## Hosting
 
-1. Push this folder to a GitHub repository.
-2. In the repository, go to Settings → Pages → Build and deployment.
-3. Pick "Deploy from a branch", then `main` and `/ (root)`.
-
-`.nojekyll` makes GitHub serve the files as they are.
+This repository only stores the files. It is not published: GitHub Pages is off for it.
 
 ## Files
 
