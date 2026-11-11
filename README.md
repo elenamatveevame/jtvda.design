@@ -29,7 +29,7 @@ Then open http://localhost:8771. Opening `index.html` straight from the disk wor
 | `index.html` | All the content: the sections, texts, pieces and photos |
 | `style.css` | Colours, type, layout, animation |
 | `main.js` | Loader, live Antwerp clock, cursor, scroll scenes, hover on the pieces |
-| `img/` | Images, all WebP |
+| `*.webp` | Images, next to `index.html` in the root |
 
 ## The page, top to bottom
 
